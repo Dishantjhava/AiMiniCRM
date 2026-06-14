@@ -72,7 +72,8 @@ const Dashboard: React.FC = () => {
       setSeeding(true);
       const response = await api.get('/seed');
       if (response.data && response.data.success) {
-        alert(`Database seeded successfully!\nCustomers: ${response.data.customers}\nOrders: ${response.data.orders}`);
+        const result = response.data;
+        alert(`Database seeded successfully!\nCustomers: ${result.customersCount || result.customers || 100}\nOrders: ${result.ordersCount || result.orders || 500}`);
         fetchStats();
       } else {
         alert('Failed to seed database.');
