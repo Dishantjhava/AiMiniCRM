@@ -106,10 +106,10 @@ const AudienceBuilder: React.FC = () => {
     <div className="space-y-8 p-8 max-w-5xl mx-auto">
       {/* Header */}
       <div>
-        <h2 className="text-3xl font-extrabold tracking-tight flex items-center space-x-2">
+        <h1 className="font-serif text-4xl font-normal tracking-tight text-white flex items-center space-x-2">
           <Sparkles className="w-8 h-8 text-primary" />
           <span>AI Audience Builder</span>
-        </h2>
+        </h1>
         <p className="text-textSecondary text-sm">
           Define customer cohorts dynamically using natural language prompts.
         </p>

@@ -272,10 +272,10 @@ const Campaigns: React.FC = () => {
     <div className="space-y-10 p-8 max-w-7xl mx-auto">
       {/* Page Header */}
       <div>
-        <h2 className="text-3xl font-extrabold tracking-tight flex items-center space-x-2">
+        <h1 className="font-serif text-4xl font-normal tracking-tight text-white flex items-center space-x-2">
           <Megaphone className="w-8 h-8 text-primary" />
           <span>Campaigns Orchestration</span>
-        </h2>
+        </h1>
         <p className="text-textSecondary text-sm">
           Draft and deploy personalized AI-assisted shopper outreach segments.
         </p>

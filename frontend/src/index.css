@@ -16,6 +16,8 @@
   --success: #3FB68B;
   --danger: #F85149;
   --warning: #E8A838;
+  --font-heading: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 * {
@@ -27,8 +29,14 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -0.02em;
 }
 
 /* Scrollbar */

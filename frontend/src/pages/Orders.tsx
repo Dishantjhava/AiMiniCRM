@@ -173,10 +173,10 @@ const Orders: React.FC = () => {
       {/* Page Title & Actions */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-extrabold tracking-tight flex items-center space-x-2">
+          <h1 className="font-serif text-4xl font-normal tracking-tight text-white flex items-center space-x-2">
             <ShoppingBag className="w-8 h-8 text-primary" />
             <span>Orders Log</span>
-          </h2>
+          </h1>
           <p className="text-textSecondary text-sm">
             Total transactions processed: <strong className="text-textPrimary">{totalCount}</strong>
           </p>

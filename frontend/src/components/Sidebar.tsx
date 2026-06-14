@@ -28,12 +28,12 @@ const Sidebar: React.FC = () => {
           <Flame className="w-6 h-6 text-[#111418]" />
         </div>
         <div>
-          <h1 className="text-xl font-extrabold tracking-wider bg-gradient-to-r from-primary to-[#2A8A67] bg-clip-text text-transparent">
+          <span className="font-serif text-xl font-normal tracking-widest text-white block">
             XENO
-          </h1>
-          <p className="text-[10px] text-textSecondary font-semibold uppercase tracking-widest">
-            AI-Native CRM
-          </p>
+          </span>
+          <span className="font-sans text-xs tracking-widest text-textSecondary uppercase block">
+            AI-NATIVE CRM
+          </span>
         </div>
       </div>
 

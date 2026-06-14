@@ -205,10 +205,10 @@ const Analytics: React.FC = () => {
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
         <div>
-          <h2 className="text-3xl font-extrabold tracking-tight flex items-center space-x-2">
+          <h1 className="font-serif text-4xl font-normal tracking-tight text-white flex items-center space-x-2">
             <BarChart3 className="w-8 h-8 text-primary" />
             <span>Campaign Metrics & Insights</span>
-          </h2>
+          </h1>
           <p className="text-textSecondary text-sm">
             AI-driven campaign funnel evaluations and recommendations.
           </p>

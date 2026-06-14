@@ -165,10 +165,10 @@ const Customers: React.FC = () => {
       {/* Page Title & Actions Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-extrabold tracking-tight flex items-center space-x-2">
+          <h1 className="font-serif text-4xl font-normal tracking-tight text-white flex items-center space-x-2">
             <Users className="w-8 h-8 text-primary" />
             <span>Customers Registry</span>
-          </h2>
+          </h1>
           <p className="text-textSecondary text-sm">
             Total active shoppers: <strong className="text-textPrimary">{totalCount}</strong>
           </p>

@@ -17,6 +17,8 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        heading: ['Instrument Serif', 'Georgia', 'serif'],
       },
     },
   },

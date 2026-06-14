@@ -124,7 +124,7 @@ const Dashboard: React.FC = () => {
       {/* Header Panel */}
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-3xl font-extrabold tracking-tight">Executive Dashboard</h2>
+          <h1 className="font-serif text-4xl font-normal tracking-tight text-white">Executive Dashboard</h1>
           <p className="text-textsecondary text-sm">
             Real-time analytics and shopper engagement funnels.
           </p>
