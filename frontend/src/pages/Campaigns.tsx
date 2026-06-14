@@ -225,6 +225,17 @@ const Campaigns: React.FC = () => {
           `Live telemetry active (refreshing every 5s)...`,
         ]);
         
+        // Debug requirement: wait 30 seconds then call GET /api/campaigns/:id and log the response
+        const campaignId = savedCampaign._id;
+        setTimeout(async () => {
+          try {
+            const debugRes = await api.get(`/campaigns/${campaignId}`);
+            console.log("DEBUG campaign counters after 30s:", debugRes.data);
+          } catch (err) {
+            console.error("DEBUG campaign counters fetch failed:", err);
+          }
+        }, 30000);
+
         // Start live tracking interval
         setTrackingCampaignId(savedCampaign._id);
         setSavedCampaign(null); // Clear active panel

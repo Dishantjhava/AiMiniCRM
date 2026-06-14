@@ -68,56 +68,55 @@ const Analytics: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
 
-  const [campaignsList, setCampaignsList] = useState<Array<{ _id: string; name: string }>>([]);
-  const [selectedId, setSelectedId] = useState<string>('');
+  const [campaignsList, setCampaignsList] = useState<Array<{ _id: string; name: string; status: string }>>([]);
+  const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null);
   const [analytics, setAnalytics] = useState<CampaignAnalyticsResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingList, setLoadingList] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 1. Fetch campaigns drop list for quick selectors
-  const fetchCampaignsList = async () => {
-    try {
-      setLoadingList(true);
-      const res = await api.get('/campaigns');
-      if (res.data && res.data.success) {
-        const list = res.data.campaigns.filter((c: any) => c.status !== 'draft');
-        setCampaignsList(list);
-        
-        // If no ID parameters, default to the latest sent campaign
-        if (!id && list.length > 0) {
-          setSelectedId(list[0]._id);
-        }
-      }
-    } catch (err) {
-      console.error('Failed to load campaigns list for analytics dropdown', err);
-    } finally {
-      setLoadingList(false);
-    }
-  };
-
+  // 1. Fetch campaigns drop list and load initial campaign
   useEffect(() => {
-    fetchCampaignsList();
+    const loadInitialCampaign = async () => {
+      try {
+        setLoadingList(true);
+        const res = await api.get('/campaigns');
+        const campaigns = res.data.campaigns || res.data;
+        setCampaignsList(campaigns);
+        
+        if (id) {
+          setSelectedCampaignId(id);
+        } else if (campaigns.length > 0) {
+          // prefer sent campaigns, fallback to first
+          const sent = campaigns.find((c: any) => c.status === 'sent');
+          const target = sent || campaigns[0];
+          setSelectedCampaignId(target._id);
+        } else {
+          setLoading(false);
+        }
+      } catch (err: any) {
+        console.error('Failed to load campaigns list for analytics', err);
+        setError(err.response?.data?.message || 'Failed to load campaigns list.');
+        setLoading(false);
+      } finally {
+        setLoadingList(false);
+      }
+    };
+    loadInitialCampaign();
   }, [id]);
 
-  // Sync selectedId with route parameters
+  // Sync selectedCampaignId with route parameter changes
   useEffect(() => {
     if (id) {
-      setSelectedId(id);
+      setSelectedCampaignId(id);
     }
   }, [id]);
 
-  // 2. Fetch specific campaign analytics when selectedId updates
   const fetchCampaignAnalytics = async () => {
-    if (!selectedId) {
-      setLoading(false);
-      return;
-    }
-
+    if (!selectedCampaignId) return;
     try {
-      setLoading(true);
       setError(null);
-      const res = await api.get(`/analytics/${selectedId}`);
+      const res = await api.get(`/analytics/${selectedCampaignId}`);
       if (res.data && res.data.success) {
         setAnalytics(res.data.data);
       } else {
@@ -131,13 +130,23 @@ const Analytics: React.FC = () => {
     }
   };
 
+  // 2. Fetch specific campaign analytics and poll every 5 seconds
   useEffect(() => {
-    fetchCampaignAnalytics();
-  }, [selectedId]);
+    if (!selectedCampaignId) return;
+
+    fetchCampaignAnalytics(); // immediate fetch
+
+    const interval = setInterval(() => {
+      fetchCampaignAnalytics();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [selectedCampaignId]);
 
   const handleDropdownChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     if (val) {
+      setSelectedCampaignId(val);
       navigate(`/analytics/${val}`);
     }
   };
@@ -209,13 +218,13 @@ const Analytics: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="text-xs text-textsecondary font-semibold uppercase tracking-wider">Select Campaign:</span>
             <select
-              value={selectedId}
+              value={selectedCampaignId || ''}
               onChange={handleDropdownChange}
               className="bg-cardbg border border-borderbg rounded-lg px-4 py-2 text-sm text-textprimary focus:outline-none focus:border-primary transition"
             >
               {campaignsList.map((item) => (
                 <option key={item._id} value={item._id}>
-                  {item.name}
+                  {item.name} ({item.status})
                 </option>
               ))}
             </select>
@@ -357,7 +366,7 @@ const Analytics: React.FC = () => {
         </div>
       ) : (
         <div className="bg-cardbg border border-borderbg rounded-xl p-12 text-center text-xs text-textsecondary italic">
-          No metrics available. Please select or deploy a sent campaign first.
+          {campaignsList.length === 0 ? "No campaigns yet" : "No metrics available. Please select or deploy a sent campaign first."}
         </div>
       )}
     </div>
