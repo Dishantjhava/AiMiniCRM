@@ -135,6 +135,16 @@ Deploy `frontend` and configure `VITE_API_URL` pointing to your deployed CRM API
 1. **Simplified Cohorts**: To avoid complex joins, we store `lifetimeValue` directly on the customer record, updating it on order entry.
 2. **Mock AI parser**: In the absence of a Groq key, we use regex parsing on the backend to extract filters, enabling instant evaluation.
 3. **No Auth/Security**: This is a single-tenant mini CRM, meaning login and JWT checking are excluded to prioritize performance.
+4. **HTTP Polling over WebSockets**: Frontend polls every 5 seconds 
+   instead of WebSockets to reduce complexity. At scale, Socket.io 
+   would replace this for true real-time updates.
+5. **Synchronous Campaign Dispatch**: The CRM loops through all 
+   customers synchronously. At scale, this would be replaced with 
+   a BullMQ job queue to handle thousands of recipients without 
+   blocking the main thread.
+6. **Single MongoDB instance**: No replica sets or sharding. At scale, 
+   MongoDB Atlas would be configured with read replicas for analytics 
+   queries and write primaries for campaign dispatch.
 
 ## Future Scalability
 - **Message Queues**: Integrate **BullMQ** or **RabbitMQ** to control transaction loads under heavy lists.
