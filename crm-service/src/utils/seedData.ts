@@ -43,9 +43,6 @@ export const seedDatabase = async () => {
   console.log('Clearing database collections...');
   await Customer.deleteMany({});
   await Order.deleteMany({});
-  await Campaign.deleteMany({});
-  await Communication.deleteMany({});
-  await CommunicationEvent.deleteMany({});
 
   console.log('Generating 100 customers...');
   const customersData = [];
