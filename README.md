@@ -8,7 +8,7 @@ Furthermore, building shopper cohorts in modern databases requires marketing exe
 ## Live Demo
 - Frontend: `http://localhost:5173`
 - CRM Service: `http://localhost:5000`
-- Channel Service: `http://localhost:6000`
+- Channel Service: `http://localhost:6001`
 
 ## Architecture Diagram
 

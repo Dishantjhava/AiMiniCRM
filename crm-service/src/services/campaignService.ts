@@ -104,7 +104,7 @@ export const sendCampaign = async (campaignId: string) => {
   campaign.convertedCount = 0;
   await campaign.save();
 
-  const channelServiceUrl = process.env.CHANNEL_SERVICE_URL || 'http://localhost:6000';
+  const channelServiceUrl = process.env.CHANNEL_SERVICE_URL || 'http://localhost:6001';
 
   // Build communication records
   const communicationsToInsert = customers.map((customer) => ({
