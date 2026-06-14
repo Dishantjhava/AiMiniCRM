@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL_NAME = 'llama3-70b-8192';
+const MODEL_NAME = 'llama-3.3-70b-versatile';
 
 interface GroqResponse {
   choices: Array<{
@@ -234,7 +234,7 @@ export const generateInsights = async (
     const response = await axios.post(
       'https://api.groq.com/openai/v1/chat/completions',
       {
-        model: 'llama3-70b-8192',
+        model: 'llama-3.3-70b-versatile',
         max_tokens: 1000,
         messages: [
           {
