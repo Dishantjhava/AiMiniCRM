@@ -212,75 +212,76 @@ export const generateInsights = async (
     conversionRate: number;
   }
 ): Promise<{ summary: string; insights: string[]; recommendations: string[] }> => {
-  const defaultInsights = {
-    summary: 'The campaign shows stable core engagement metrics. Delivery rates are within expected limits, but there is room to improve conversion stages.',
-    insights: [
-      'Recipient response peaks within the first hour of delivery.',
-      'Conversion rates represent typical engagement for fashion products.',
-      'A minor drop-off is visible between open and read states.',
-    ],
-    recommendations: [
-      'A/B test different subject lines and message headers to boost initial open rates.',
-      'Introduce a limited-time coupon code to accelerate the final conversion step.',
-    ],
-  };
-
+  const m = metrics as any;
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey || apiKey === 'your_groq_api_key_here') {
     console.log('[AI Service] No GROQ_API_KEY set. Using default analytical insights.');
-    return defaultInsights;
+    return {
+      summary: 'Campaign metrics are being collected. Insights will appear as data grows.',
+      insights: [
+        'Monitor delivery rates over the next 24 hours',
+        'WhatsApp campaigns typically see higher open rates',
+        'Consider sending at peak hours (7-9 PM IST) for better engagement'
+      ],
+      recommendations: [
+        'Send follow-up campaign to unopened segment after 48 hours',
+        'A/B test message copy with a smaller cohort first'
+      ]
+    };
   }
 
   try {
-    const response = await axios.post<GroqResponse>(
-      GROQ_API_URL,
+    const response = await axios.post(
+      'https://api.groq.com/openai/v1/chat/completions',
       {
-        model: MODEL_NAME,
+        model: 'llama3-70b-8192',
+        max_tokens: 1000,
         messages: [
           {
             role: 'system',
             content: `You are a marketing analytics expert for Indian fashion retail brands.
 Analyze campaign performance metrics and return insights.
-Return ONLY a valid JSON object:
-{
-  "summary": "string",        // 2 sentence performance summary
-  "insights": ["string"],     // array of 3-4 specific insights
-  "recommendations": ["string"] // array of 2-3 actionable recommendations
-}
-No markdown. No backticks.`,
+Return ONLY a valid JSON object with no markdown, no backticks, no explanation:
+{"summary":"string","insights":["string","string","string"],"recommendations":["string","string"]}`
           },
           {
             role: 'user',
-            content: `Campaign Metrics:
-Sent: ${metrics.sent}
-Delivered: ${metrics.delivered}
-Failed: ${metrics.failed}
-Opened: ${metrics.opened}
-Read: ${metrics.read}
-Clicked: ${metrics.clicked}
-Converted: ${metrics.converted}
-Delivery Rate: ${metrics.deliveryRate}%
-Open Rate: ${metrics.openRate}%
-Click Rate: ${metrics.clickRate}%
-Conversion Rate: ${metrics.conversionRate}%`,
-          },
-        ],
-        temperature: 0.3,
+            content: `Analyze these campaign metrics and return JSON only:
+Sent: ${m.sent || 0}
+Delivered: ${m.delivered || 0}
+Failed: ${m.failed || 0}
+Opened: ${m.opened || 0}
+Read: ${m.read || 0}
+Clicked: ${m.clicked || 0}
+Converted: ${m.converted || 0}`
+          }
+        ]
       },
       {
         headers: {
-          Authorization: `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        timeout: 10000,
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
       }
     );
 
-    const content = response.data.choices[0].message.content;
-    const cleaned = cleanJsonString(content);
-    return JSON.parse(cleaned);
-  } catch (error: any) {
-    console.error('[AI Service] generateInsights failed. Error:', error.message);
-    return defaultInsights;
+    const text = response.data.choices[0].message.content;
+    const clean = text.replace(/```json|```/g, '').trim();
+    return JSON.parse(clean);
+
+  } catch (err: any) {
+    console.error('[AI Service] generateInsights failed. Error:', err?.message);
+    return {
+      summary: 'Campaign metrics are being collected. Insights will appear as data grows.',
+      insights: [
+        'Monitor delivery rates over the next 24 hours',
+        'WhatsApp campaigns typically see higher open rates',
+        'Consider sending at peak hours (7-9 PM IST) for better engagement'
+      ],
+      recommendations: [
+        'Send follow-up campaign to unopened segment after 48 hours',
+        'A/B test message copy with a smaller cohort first'
+      ]
+    };
   }
 };
