@@ -22,16 +22,23 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="w-64 bg-surface border-r border-border flex flex-col h-screen sticky top-0">
       {/* Branding Header */}
-      <div className="px-6 py-8 border-b border-[#30363D]">
-        <div className="flex flex-col">
-          <span 
-            style={{ fontFamily: 'Instrument Serif, Georgia, serif' }}
-            className="text-3xl font-normal tracking-wide text-white"
+      <div className="px-6 py-6 border-b border-[#30363D]">
+        <div className="flex flex-col gap-0.5">
+          <span
+            style={{ 
+              fontFamily: 'Instrument Serif, Georgia, serif',
+              letterSpacing: '0.05em',
+              lineHeight: '1'
+            }}
+            className="text-2xl font-normal text-white"
           >
-            xeno
+            xeno.
           </span>
-          <span className="text-xs font-medium tracking-[0.2em] text-[#3FB68B] uppercase mt-0.5">
-            AI-Native CRM
+          <span 
+            style={{ letterSpacing: '0.25em' }}
+            className="text-[9px] font-semibold text-[#3FB68B] uppercase"
+          >
+            ai-native crm
           </span>
         </div>
       </div>
