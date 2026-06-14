@@ -18,6 +18,9 @@ app.use(cors({
 
 app.use(express.json());
 
+// Health check endpoint (used by CRM to probe availability)
+app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+
 // Bind simulator webhook route
 app.use('/send', sendRoutes);
 
