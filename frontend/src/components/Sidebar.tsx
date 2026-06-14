@@ -7,7 +7,6 @@ import {
   Sparkles,
   Megaphone,
   BarChart3,
-  Flame,
 } from 'lucide-react';
 
 const Sidebar: React.FC = () => {
@@ -23,16 +22,16 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="w-64 bg-surface border-r border-border flex flex-col h-screen sticky top-0">
       {/* Branding Header */}
-      <div className="p-6 border-b border-border flex items-center space-x-3">
-        <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
-          <Flame className="w-6 h-6 text-[#111418]" />
-        </div>
-        <div>
-          <span className="font-serif text-xl font-normal tracking-widest text-white block">
-            XENO
+      <div className="px-6 py-8 border-b border-[#30363D]">
+        <div className="flex flex-col">
+          <span 
+            style={{ fontFamily: 'Instrument Serif, Georgia, serif' }}
+            className="text-3xl font-normal tracking-wide text-white"
+          >
+            xeno
           </span>
-          <span className="font-sans text-xs tracking-widest text-textSecondary uppercase block">
-            AI-NATIVE CRM
+          <span className="text-xs font-medium tracking-[0.2em] text-[#3FB68B] uppercase mt-0.5">
+            AI-Native CRM
           </span>
         </div>
       </div>
