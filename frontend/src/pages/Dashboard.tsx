@@ -116,8 +116,8 @@ const Dashboard: React.FC = () => {
     }).format(val);
   };
 
-  // Funnel bar chart colors
-  const COLORS = ['#6C63FF', '#5650D8', '#423EB2', '#2F2D8D', '#1D1B6A', '#0D0C4A'];
+  // Funnel bar chart colors (shades of mint green)
+  const COLORS = ['#3FB68B', '#359B76', '#2B8061', '#21654C', '#174A37', '#0E3022'];
 
   return (
     <div className="space-y-8 p-8 max-w-7xl mx-auto">
@@ -212,16 +212,16 @@ const Dashboard: React.FC = () => {
                   <YAxis
                     dataKey="stage"
                     type="category"
-                    tick={{ fill: '#8888AA', fontSize: 11 }}
+                    tick={{ fill: '#8B949E', fontSize: 11 }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <Tooltip
-                    cursor={{ fill: 'rgba(108, 99, 255, 0.05)' }}
+                    cursor={{ fill: 'rgba(63, 182, 139, 0.05)' }}
                     contentStyle={{
-                      backgroundColor: '#1A1A2E',
-                      borderColor: '#2A2A4A',
-                      color: '#FFFFFF',
+                      backgroundColor: '#1C2128',
+                      borderColor: '#30363D',
+                      color: '#F0F6FC',
                       borderRadius: '8px',
                       fontSize: '12px',
                     }}

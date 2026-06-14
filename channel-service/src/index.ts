@@ -18,6 +18,11 @@ app.use(cors({
 
 app.use(express.json());
 
+// Root endpoint to prevent "Cannot GET /" confusion
+app.get('/', (_req, res) => {
+  res.send('Channel Service simulator is running. Use /health or POST /send.');
+});
+
 // Health check endpoint (used by CRM to probe availability)
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
