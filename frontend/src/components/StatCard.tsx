@@ -20,22 +20,22 @@ const StatCard: React.FC<StatCardProps> = ({
   trend,
 }) => {
   return (
-    <div className="bg-cardbg border border-borderbg rounded-xl p-6 relative overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
+    <div className="bg-surface border border-border rounded-xl p-6 relative overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
       {/* Decorative gradient glowing blob */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="flex justify-between items-start">
         <div>
-          <p className="text-sm font-semibold text-textsecondary uppercase tracking-wider">
+          <p className="text-sm font-semibold text-textSecondary uppercase tracking-wider">
             {title}
           </p>
-          <h3 className="text-3xl font-bold mt-2 text-textprimary tracking-tight">
+          <h3 className="text-3xl font-bold mt-2 text-textPrimary tracking-tight">
             {value}
           </h3>
         </div>
 
         {Icon && (
-          <div className="p-3 bg-borderbg rounded-lg border border-borderbg text-primary flex items-center justify-center">
+          <div className="p-3 bg-border rounded-lg border border-border text-primary flex items-center justify-center">
             <Icon className="w-6 h-6" />
           </div>
         )}
@@ -55,7 +55,7 @@ const StatCard: React.FC<StatCardProps> = ({
             </span>
           )}
           {description && (
-            <span className="text-textsecondary">{description}</span>
+            <span className="text-textSecondary">{description}</span>
           )}
         </div>
       )}

@@ -76,7 +76,7 @@ const AudienceBuilder: React.FC = () => {
     if (filters.category) tags.push(`Category: ${filters.category}`);
 
     if (tags.length === 0) {
-      return <span className="text-xs text-textsecondary italic">No structured filters extracted. General audience.</span>;
+      return <span className="text-xs text-textSecondary italic">No structured filters extracted. General audience.</span>;
     }
 
     return (
@@ -110,18 +110,18 @@ const AudienceBuilder: React.FC = () => {
           <Sparkles className="w-8 h-8 text-primary" />
           <span>AI Audience Builder</span>
         </h2>
-        <p className="text-textsecondary text-sm">
+        <p className="text-textSecondary text-sm">
           Define customer cohorts dynamically using natural language prompts.
         </p>
       </div>
 
       {/* Input Prompt Card */}
-      <div className="bg-cardbg border border-borderbg rounded-xl p-6 shadow-xl relative overflow-hidden">
+      <div className="bg-surface border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
         {/* Glow behind input */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-success/5 pointer-events-none"></div>
 
         <form onSubmit={handleGenerateAudience} className="space-y-4 relative z-10">
-          <label className="text-sm font-semibold text-textprimary block">
+          <label className="text-sm font-semibold text-textPrimary block">
             Cohort Prompt Description
           </label>
           <textarea
@@ -129,18 +129,18 @@ const AudienceBuilder: React.FC = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Describe your audience... e.g. 'Customers from Delhi who spent over ₹5000 and haven't shopped in 60 days'"
-            className="w-full bg-darkbg border border-borderbg rounded-xl p-4 text-sm text-textprimary placeholder-textsecondary focus:outline-none focus:border-primary transition"
+            className="w-full bg-background border border-border rounded-xl p-4 text-sm text-textPrimary placeholder-textSecondary focus:outline-none focus:border-primary transition"
           />
 
           <div className="flex justify-between items-center">
-            <span className="text-xs text-textsecondary flex items-center space-x-1">
+            <span className="text-xs text-textSecondary flex items-center space-x-1">
               <HelpCircle className="w-3.5 h-3.5" />
               <span>AI will parse values, cities, spent categories, and active filters.</span>
             </span>
             <button
               type="submit"
               disabled={loading || !description.trim()}
-              className="flex items-center space-x-2 px-5 py-2.5 bg-primary hover:bg-primary/95 text-white rounded-lg transition font-semibold text-sm disabled:opacity-50 shadow-lg shadow-primary/20"
+              className="flex items-center space-x-2 px-5 py-2.5 bg-primary hover:bg-primary/95 text-[#111418] rounded-lg transition font-semibold text-sm disabled:opacity-50 shadow-lg shadow-primary/20"
             >
               <Sparkles className="w-4 h-4" />
               <span>{loading ? 'AI is analyzing...' : 'Generate Cohort'}</span>
@@ -151,7 +151,7 @@ const AudienceBuilder: React.FC = () => {
 
       {/* Loading Indicator */}
       {loading && (
-        <div className="bg-cardbg border border-borderbg rounded-xl p-10 flex justify-center items-center">
+        <div className="bg-surface border border-border rounded-xl p-10 flex justify-center items-center">
           <LoadingSpinner message="AI is parsing text prompts and resolving customer query logic..." />
         </div>
       )}
@@ -168,9 +168,9 @@ const AudienceBuilder: React.FC = () => {
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Extracted filters tags card */}
-            <div className="bg-cardbg border border-borderbg rounded-xl p-6 flex flex-col justify-between">
+            <div className="bg-surface border border-border rounded-xl p-6 flex flex-col justify-between">
               <div>
-                <h4 className="text-xs font-bold text-textsecondary uppercase tracking-wider mb-3">
+                <h4 className="text-xs font-bold text-textSecondary uppercase tracking-wider mb-3">
                   Extracted Filters
                 </h4>
                 {renderFilterTags(result.filters)}
@@ -178,23 +178,23 @@ const AudienceBuilder: React.FC = () => {
             </div>
 
             {/* Total Cohort Size Card */}
-            <div className="bg-cardbg border border-borderbg rounded-xl p-6 md:col-span-2 flex flex-col justify-between">
+            <div className="bg-surface border border-border rounded-xl p-6 md:col-span-2 flex flex-col justify-between">
               <div>
-                <h4 className="text-xs font-bold text-textsecondary uppercase tracking-wider mb-2">
+                <h4 className="text-xs font-bold text-textSecondary uppercase tracking-wider mb-2">
                   Target Cohort Size
                 </h4>
                 <div className="flex items-baseline space-x-2">
                   <span className="text-5xl font-extrabold text-success tracking-tight">
                     {result.totalCount}
                   </span>
-                  <span className="text-sm text-textsecondary font-medium">
+                  <span className="text-sm text-textSecondary font-medium">
                     customers match your prompt description
                   </span>
                 </div>
               </div>
 
               {result.totalCount > 0 && (
-                <div className="mt-4 pt-3 border-t border-borderbg/50">
+                <div className="mt-4 pt-3 border-t border-border/50">
                   <button
                     onClick={handleUseAudience}
                     className="flex items-center justify-between w-full text-xs font-bold text-primary hover:text-white transition group"
@@ -208,8 +208,8 @@ const AudienceBuilder: React.FC = () => {
           </div>
 
           {/* Customers cohort previews subset */}
-          <div className="bg-cardbg border border-borderbg rounded-xl p-6">
-            <h4 className="text-xs font-bold text-textsecondary uppercase tracking-wider mb-4 flex items-center space-x-1">
+          <div className="bg-surface border border-border rounded-xl p-6">
+            <h4 className="text-xs font-bold text-textSecondary uppercase tracking-wider mb-4 flex items-center space-x-1">
               <UserCheck className="w-4 h-4 text-primary" />
               <span>Cohort Preview (First 10 Customers)</span>
             </h4>
@@ -217,19 +217,19 @@ const AudienceBuilder: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-borderbg text-textsecondary text-xs uppercase tracking-wider">
+                  <tr className="border-b border-border text-textSecondary text-xs uppercase tracking-wider">
                     <th className="pb-3 font-semibold">Name</th>
                     <th className="pb-3 font-semibold">City</th>
                     <th className="pb-3 font-semibold text-right">LTV</th>
                     <th className="pb-3 font-semibold">Last Purchase</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-borderbg/50">
+                <tbody className="divide-y divide-border/50">
                   {result.customers.length > 0 ? (
                     result.customers.map((c) => (
                       <tr key={c._id}>
-                        <td className="py-3 font-semibold text-textprimary">{c.name}</td>
-                        <td className="py-3 text-textsecondary">{c.city || '—'}</td>
+                        <td className="py-3 font-semibold text-textPrimary">{c.name}</td>
+                        <td className="py-3 text-textSecondary">{c.city || '—'}</td>
                         <td className="py-3 text-right font-bold text-success">
                           {new Intl.NumberFormat('en-IN', {
                             style: 'currency',
@@ -237,12 +237,12 @@ const AudienceBuilder: React.FC = () => {
                             maximumFractionDigits: 0,
                           }).format(c.lifetimeValue)}
                         </td>
-                        <td className="py-3 text-textsecondary">{formatDate(c.lastPurchaseDate)}</td>
+                        <td className="py-3 text-textSecondary">{formatDate(c.lastPurchaseDate)}</td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={4} className="py-6 text-center text-textsecondary italic">
+                      <td colSpan={4} className="py-6 text-center text-textSecondary italic">
                         No customer previews available. Adjust cohort requirements.
                       </td>
                     </tr>

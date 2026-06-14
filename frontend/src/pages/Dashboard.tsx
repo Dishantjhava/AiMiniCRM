@@ -135,7 +135,7 @@ const Dashboard: React.FC = () => {
           <button
             onClick={handleSeedData}
             disabled={seeding}
-            className="flex items-center space-x-2 px-4 py-2 border border-borderbg bg-cardbg hover:bg-borderbg text-textprimary rounded-lg transition text-sm font-semibold disabled:opacity-50"
+            className="flex items-center space-x-2 px-4 py-2 border border-border bg-surface hover:bg-border text-textPrimary rounded-lg transition text-sm font-semibold disabled:opacity-50"
           >
             <Database className={`w-4 h-4 ${seeding ? 'animate-spin' : ''}`} />
             <span>{seeding ? 'Seeding...' : 'Seed Sample Data'}</span>
@@ -151,7 +151,7 @@ const Dashboard: React.FC = () => {
 
           <button
             onClick={() => navigate('/campaigns')}
-            className="flex items-center space-x-2 px-4 py-2 bg-primary text-white hover:bg-primary/95 rounded-lg transition text-sm font-semibold shadow-lg shadow-primary/20"
+            className="flex items-center space-x-2 px-4 py-2 bg-primary text-[#111418] hover:bg-primary/95 rounded-lg transition text-sm font-semibold shadow-lg shadow-primary/20"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Create Campaign</span>
@@ -192,10 +192,10 @@ const Dashboard: React.FC = () => {
       {/* Main Charts & Tables section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Funnel chart container */}
-        <div className="lg:col-span-1 bg-cardbg border border-borderbg rounded-xl p-6 flex flex-col justify-between">
+        <div className="lg:col-span-1 bg-surface border border-border rounded-xl p-6 flex flex-col justify-between">
           <div>
-            <h3 className="text-lg font-bold text-textprimary mb-1">Communication Funnel</h3>
-            <p className="text-xs text-textsecondary mb-6">
+            <h3 className="text-lg font-bold text-textPrimary mb-1">Communication Funnel</h3>
+            <p className="text-xs text-textSecondary mb-6">
               Aggregated conversion lifecycle stages across campaigns.
             </p>
           </div>
@@ -234,7 +234,7 @@ const Dashboard: React.FC = () => {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="h-full flex items-center justify-center text-xs text-textsecondary italic">
+              <div className="h-full flex items-center justify-center text-xs text-textSecondary italic">
                 No campaigns dispatched yet. Seeding data is recommended.
               </div>
             )}
@@ -242,16 +242,16 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Recent Campaigns lists */}
-        <div className="lg:col-span-2 bg-cardbg border border-borderbg rounded-xl p-6">
-          <h3 className="text-lg font-bold text-textprimary mb-1">Recent Shopper Campaigns</h3>
-          <p className="text-xs text-textsecondary mb-6">
+        <div className="lg:col-span-2 bg-surface border border-border rounded-xl p-6">
+          <h3 className="text-lg font-bold text-textPrimary mb-1">Recent Shopper Campaigns</h3>
+          <p className="text-xs text-textSecondary mb-6">
             Summary of newly deployed segments and status.
           </p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-borderbg text-textsecondary text-xs uppercase tracking-wider">
+                <tr className="border-b border-border text-textSecondary text-xs uppercase tracking-wider">
                   <th className="pb-3 font-semibold">Campaign Name</th>
                   <th className="pb-3 font-semibold">Status</th>
                   <th className="pb-3 font-semibold text-right">Cohort Size</th>
@@ -259,15 +259,15 @@ const Dashboard: React.FC = () => {
                   <th className="pb-3 font-semibold text-right">Delivered</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-borderbg/50">
+              <tbody className="divide-y divide-border/50">
                 {stats && stats.recentCampaigns && stats.recentCampaigns.length > 0 ? (
                   stats.recentCampaigns.map((camp) => (
                     <tr
                       key={camp._id}
                       onClick={() => navigate(`/analytics/${camp._id}`)}
-                      className="hover:bg-borderbg/20 cursor-pointer transition-colors"
+                      className="hover:bg-border/20 cursor-pointer transition-colors"
                     >
-                      <td className="py-3.5 font-semibold text-textprimary">{camp.name}</td>
+                      <td className="py-3.5 font-semibold text-textPrimary">{camp.name}</td>
                       <td className="py-3.5">
                         <span
                           className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${
@@ -275,26 +275,26 @@ const Dashboard: React.FC = () => {
                               ? 'bg-success/15 text-success border-success/30'
                               : camp.status === 'sending'
                               ? 'bg-warning/15 text-warning border-warning/30'
-                              : 'bg-borderbg text-textsecondary border-borderbg'
+                              : 'bg-border text-textSecondary border-border'
                           }`}
                         >
                           {camp.status}
                         </span>
                       </td>
-                      <td className="py-3.5 text-right font-medium text-textprimary">
+                      <td className="py-3.5 text-right font-medium text-textPrimary">
                         {camp.audienceSize}
                       </td>
-                      <td className="py-3.5 text-right text-textsecondary font-semibold">
+                      <td className="py-3.5 text-right text-textSecondary font-semibold">
                         {camp.sentCount}
                       </td>
-                      <td className="py-3.5 text-right text-textsecondary font-semibold">
+                      <td className="py-3.5 text-right text-textSecondary font-semibold">
                         {camp.deliveredCount}
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={5} className="py-8 text-center text-textsecondary italic">
+                    <td colSpan={5} className="py-8 text-center text-textSecondary italic">
                       No campaigns found. Use the buttons above to create your first draft!
                     </td>
                   </tr>

@@ -21,17 +21,17 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 bg-cardbg border-r border-borderbg flex flex-col h-screen sticky top-0">
+    <aside className="w-64 bg-surface border-r border-border flex flex-col h-screen sticky top-0">
       {/* Branding Header */}
-      <div className="p-6 border-b border-borderbg flex items-center space-x-3">
+      <div className="p-6 border-b border-border flex items-center space-x-3">
         <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
-          <Flame className="w-6 h-6 text-white" />
+          <Flame className="w-6 h-6 text-[#111418]" />
         </div>
         <div>
-          <h1 className="text-xl font-extrabold tracking-wider bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
+          <h1 className="text-xl font-extrabold tracking-wider bg-gradient-to-r from-primary to-[#2A8A67] bg-clip-text text-transparent">
             XENO
           </h1>
-          <p className="text-[10px] text-textsecondary font-semibold uppercase tracking-widest">
+          <p className="text-[10px] text-textSecondary font-semibold uppercase tracking-widest">
             AI-Native CRM
           </p>
         </div>
@@ -48,8 +48,8 @@ const Sidebar: React.FC = () => {
               className={({ isActive }) =>
                 `flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-primary text-white shadow-md shadow-primary/20 border-r-4 border-success'
-                    : 'text-textsecondary hover:bg-borderbg hover:text-textprimary'
+                    ? 'bg-[#3FB68B] text-[#111418] shadow-md shadow-primary/20'
+                    : 'text-textSecondary hover:bg-border hover:text-textPrimary'
                 }`
               }
             >
@@ -61,9 +61,9 @@ const Sidebar: React.FC = () => {
       </nav>
 
       {/* Footer / System Status */}
-      <div className="p-4 border-t border-borderbg">
-        <div className="bg-borderbg/50 rounded-lg p-3 flex items-center justify-between">
-          <span className="text-xs text-textsecondary">Engine Status</span>
+      <div className="p-4 border-t border-border">
+        <div className="bg-border/50 rounded-lg p-3 flex items-center justify-between">
+          <span className="text-xs text-textSecondary">Engine Status</span>
           <div className="flex items-center space-x-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-success animate-pulse"></span>
             <span className="text-[10px] font-bold text-success uppercase">Active</span>

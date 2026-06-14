@@ -254,7 +254,7 @@ const Campaigns: React.FC = () => {
   const renderMessagePreview = (message: string) => {
     const parts = message.split(/({{name}})/g);
     return (
-      <p className="text-sm text-textprimary whitespace-pre-wrap leading-relaxed">
+      <p className="text-sm text-textPrimary whitespace-pre-wrap leading-relaxed">
         {parts.map((part, i) =>
           part === '{{name}}' ? (
             <span key={i} className="px-1.5 py-0.5 bg-primary/20 text-primary border border-primary/30 rounded font-semibold text-xs">
@@ -276,7 +276,7 @@ const Campaigns: React.FC = () => {
           <Megaphone className="w-8 h-8 text-primary" />
           <span>Campaigns Orchestration</span>
         </h2>
-        <p className="text-textsecondary text-sm">
+        <p className="text-textSecondary text-sm">
           Draft and deploy personalized AI-assisted shopper outreach segments.
         </p>
       </div>
@@ -284,15 +284,15 @@ const Campaigns: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Section A: Generator & Actions */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-cardbg border border-borderbg rounded-xl p-6 shadow-xl relative overflow-hidden">
-            <h3 className="text-lg font-bold text-textprimary mb-4 flex items-center space-x-2">
+          <div className="bg-surface border border-border rounded-xl p-6 shadow-xl relative overflow-hidden">
+            <h3 className="text-lg font-bold text-textPrimary mb-4 flex items-center space-x-2">
               <Sparkles className="w-5 h-5 text-primary" />
               <span>AI Campaign Generator</span>
             </h3>
 
             <form onSubmit={handleGenerateDraft} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                   Campaign Goal / Intent
                 </label>
                 <input
@@ -301,12 +301,12 @@ const Campaigns: React.FC = () => {
                   placeholder="e.g. Offer 20% off on winter accessories for Delhi customers"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
-                  className="w-full bg-darkbg border border-borderbg rounded-lg px-4 py-2.5 text-sm text-textprimary focus:outline-none focus:border-primary transition"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm text-textPrimary focus:outline-none focus:border-primary transition"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                   Audience Target Description
                 </label>
                 <textarea
@@ -315,7 +315,7 @@ const Campaigns: React.FC = () => {
                   placeholder="Describe target customer traits or parameters..."
                   value={audienceDesc}
                   onChange={(e) => setAudienceDesc(e.target.value)}
-                  className="w-full bg-darkbg border border-borderbg rounded-lg px-4 py-2.5 text-sm text-textprimary focus:outline-none focus:border-primary transition"
+                  className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm text-textPrimary focus:outline-none focus:border-primary transition"
                 />
               </div>
 
@@ -323,7 +323,7 @@ const Campaigns: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loadingDraft || !goal.trim() || !audienceDesc.trim()}
-                  className="flex items-center space-x-2 px-5 py-2.5 bg-primary hover:bg-primary/95 text-white rounded-lg transition font-semibold text-sm disabled:opacity-50"
+                  className="flex items-center space-x-2 px-5 py-2.5 bg-primary hover:bg-primary/95 text-[#111418] rounded-lg transition font-semibold text-sm disabled:opacity-50"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>{loadingDraft ? 'Crafting copy...' : 'Generate Campaign'}</span>
@@ -334,15 +334,15 @@ const Campaigns: React.FC = () => {
 
           {/* AI CRAFTED DRAFT PANEL */}
           {loadingDraft && (
-            <div className="bg-cardbg border border-borderbg rounded-xl p-10 flex justify-center items-center">
+            <div className="bg-surface border border-border rounded-xl p-10 flex justify-center items-center">
               <LoadingSpinner message="AI strategist is choosing templates and editing message..." />
             </div>
           )}
 
           {draft && (
-            <div className="bg-cardbg border border-borderbg rounded-xl p-6 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
-              <div className="flex justify-between items-center pb-3 border-b border-borderbg">
-                <h4 className="font-bold text-textprimary">AI Crafted Campaign Preview</h4>
+            <div className="bg-surface border border-border rounded-xl p-6 space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
+              <div className="flex justify-between items-center pb-3 border-b border-border">
+                <h4 className="font-bold text-textPrimary">AI Crafted Campaign Preview</h4>
                 <span className="text-xs font-semibold px-2 py-0.5 bg-success/10 border border-success/25 text-success rounded-full">
                   Ready to review
                 </span>
@@ -350,25 +350,25 @@ const Campaigns: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                     Campaign Name
                   </label>
                   <input
                     type="text"
                     value={draft.name}
                     onChange={(e) => setDraft({ ...draft, name: e.target.value })}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                     Outbound Channel
                   </label>
                   <select
                     value={draft.channel}
                     onChange={(e) => setDraft({ ...draft, channel: e.target.value as any })}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   >
                     <option value="WhatsApp">WhatsApp</option>
                     <option value="SMS">SMS</option>
@@ -379,18 +379,18 @@ const Campaigns: React.FC = () => {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                   Copywriter Message Template
                 </label>
                 <textarea
                   rows={3}
                   value={draft.message}
                   onChange={(e) => setDraft({ ...draft, message: e.target.value })}
-                  className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                 />
               </div>
 
-              <div className="bg-darkbg/50 rounded-lg p-3 border border-borderbg/50 flex justify-between items-center text-xs text-textsecondary">
+              <div className="bg-background/50 rounded-lg p-3 border border-border/50 flex justify-between items-center text-xs text-textSecondary">
                 <span>Matching cohort size: <strong>{draft.audienceSize}</strong> shoppers</span>
                 <span className="font-semibold text-primary uppercase">Calculated Filters matched</span>
               </div>
@@ -400,7 +400,7 @@ const Campaigns: React.FC = () => {
                   <button
                     onClick={handleSaveCampaign}
                     disabled={saving}
-                    className="flex items-center space-x-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-semibold transition"
+                    className="flex items-center space-x-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-[#111418] rounded-lg text-sm font-semibold transition"
                   >
                     <Save className="w-4 h-4" />
                     <span>{saving ? 'Saving...' : 'Save Campaign'}</span>
@@ -412,14 +412,14 @@ const Campaigns: React.FC = () => {
 
           {/* DELIVER DRAWS */}
           {savedCampaign && (
-            <div className="bg-cardbg border border-success/30 rounded-xl p-6 space-y-4 animate-in fade-in zoom-in-95 duration-200">
-              <div className="flex justify-between items-center pb-2 border-b border-borderbg">
+            <div className="bg-surface border border-success/30 rounded-xl p-6 space-y-4 animate-in fade-in zoom-in-95 duration-200">
+              <div className="flex justify-between items-center pb-2 border-b border-border">
                 <h4 className="font-bold text-success">Campaign Saved Successfully</h4>
                 <Clock className="w-4 h-4 text-warning" />
               </div>
               
-              <div className="bg-darkbg/50 p-4 rounded-lg border border-borderbg">
-                <h5 className="font-semibold text-textprimary text-sm mb-1">{savedCampaign.name}</h5>
+              <div className="bg-background/50 p-4 rounded-lg border border-border">
+                <h5 className="font-semibold text-textPrimary text-sm mb-1">{savedCampaign.name}</h5>
                 <span className="text-[10px] uppercase font-bold text-primary tracking-wider block mb-3">
                   Channel: {savedCampaign.recommendedChannel}
                 </span>
@@ -430,7 +430,7 @@ const Campaigns: React.FC = () => {
                 <button
                   onClick={handleSendCampaign}
                   disabled={sending}
-                  className="flex items-center space-x-2 px-5 py-2.5 bg-success hover:bg-success/90 text-white rounded-lg text-sm font-semibold transition"
+                  className="flex items-center space-x-2 px-5 py-2.5 bg-success hover:bg-success/90 text-[#111418] rounded-lg text-sm font-semibold transition"
                 >
                   <Send className="w-4 h-4" />
                   <span>{sending ? 'Queueing outbound...' : 'Send Campaign'}</span>
@@ -441,15 +441,15 @@ const Campaigns: React.FC = () => {
 
           {/* REALTIME TERMINAL EVENT LOGS */}
           {logs.length > 0 && (
-            <div className="bg-[#0A0A14] border border-borderbg rounded-xl p-6 font-mono text-xs text-textsecondary space-y-2">
-              <h5 className="text-textprimary font-semibold text-xs border-b border-borderbg pb-2 uppercase tracking-widest flex items-center justify-between">
+            <div className="bg-background border border-border rounded-xl p-6 font-mono text-xs text-textSecondary space-y-2">
+              <h5 className="text-textPrimary font-semibold text-xs border-b border-border pb-2 uppercase tracking-widest flex items-center justify-between">
                 <span>Outbound Telemetry Log</span>
                 {trackingCampaignId && <RefreshCw className="w-3.5 h-3.5 text-primary animate-spin" />}
               </h5>
               <div className="max-h-48 overflow-y-auto space-y-1.5 scrollbar-thin">
                 {logs.map((log, i) => (
                   <p key={i} className="text-success/90">
-                    <span className="text-textsecondary">{`>`}</span> {log}
+                    <span className="text-textSecondary">{`>`}</span> {log}
                   </p>
                 ))}
               </div>
@@ -459,7 +459,7 @@ const Campaigns: React.FC = () => {
 
         {/* Section B: Campaign Catalog */}
         <div className="space-y-6">
-          <h3 className="text-lg font-bold text-textprimary flex items-center space-x-2">
+          <h3 className="text-lg font-bold text-textPrimary flex items-center space-x-2">
             <Megaphone className="w-5 h-5 text-primary" />
             <span>Campaigns Registry</span>
           </h3>
@@ -477,7 +477,7 @@ const Campaigns: React.FC = () => {
                   <CampaignCard key={camp._id} campaign={camp} />
                 ))
               ) : (
-                <div className="bg-cardbg border border-borderbg rounded-xl p-8 text-center text-xs text-textsecondary italic">
+                <div className="bg-surface border border-border rounded-xl p-8 text-center text-xs text-textSecondary italic">
                   No active or draft campaigns registered yet.
                 </div>
               )}

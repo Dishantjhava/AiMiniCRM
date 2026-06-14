@@ -169,8 +169,8 @@ const Customers: React.FC = () => {
             <Users className="w-8 h-8 text-primary" />
             <span>Customers Registry</span>
           </h2>
-          <p className="text-textsecondary text-sm">
-            Total active shoppers: <strong className="text-textprimary">{totalCount}</strong>
+          <p className="text-textSecondary text-sm">
+            Total active shoppers: <strong className="text-textPrimary">{totalCount}</strong>
           </p>
         </div>
 
@@ -178,7 +178,7 @@ const Customers: React.FC = () => {
           <button
             onClick={handleSeedData}
             disabled={seeding}
-            className="flex items-center space-x-2 px-4 py-2 border border-borderbg bg-cardbg hover:bg-borderbg text-textprimary rounded-lg transition text-sm font-semibold disabled:opacity-50"
+            className="flex items-center space-x-2 px-4 py-2 border border-border bg-surface hover:bg-border text-textPrimary rounded-lg transition text-sm font-semibold disabled:opacity-50"
           >
             <Database className={`w-4 h-4 ${seeding ? 'animate-spin' : ''}`} />
             <span>{seeding ? 'Seeding...' : 'Seed Data'}</span>
@@ -186,7 +186,7 @@ const Customers: React.FC = () => {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center space-x-2 px-4 py-2 bg-primary text-white hover:bg-primary/95 rounded-lg transition text-sm font-semibold shadow-lg shadow-primary/20"
+            className="flex items-center space-x-2 px-4 py-2 bg-primary text-[#111418] hover:bg-primary/95 rounded-lg transition text-sm font-semibold shadow-lg shadow-primary/20"
           >
             <Plus className="w-4 h-4" />
             <span>Add Customer</span>
@@ -195,15 +195,15 @@ const Customers: React.FC = () => {
       </div>
 
       {/* Filter and Search Panel */}
-      <div className="bg-cardbg border border-borderbg rounded-xl p-4 flex items-center">
+      <div className="bg-surface border border-border rounded-xl p-4 flex items-center">
         <div className="relative flex-1 max-w-md">
-          <Search className="w-5 h-5 text-textsecondary absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-5 h-5 text-textSecondary absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search by name, email, or city..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-darkbg border border-borderbg rounded-lg pl-10 pr-4 py-2 text-sm text-textprimary placeholder-textsecondary focus:outline-none focus:border-primary transition"
+            className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2 text-sm text-textPrimary placeholder-textSecondary focus:outline-none focus:border-primary transition"
           />
         </div>
       </div>
@@ -216,18 +216,18 @@ const Customers: React.FC = () => {
           <p className="text-danger font-semibold">{error}</p>
           <button
             onClick={fetchCustomers}
-            className="flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition"
+            className="flex items-center space-x-2 px-4 py-2 bg-primary text-[#111418] rounded-lg hover:bg-primary/80 transition"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Retry</span>
           </button>
         </div>
       ) : (
-        <div className="bg-cardbg border border-borderbg rounded-xl overflow-hidden">
+        <div className="bg-surface border border-border rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-borderbg text-textsecondary text-xs uppercase tracking-wider bg-darkbg/35">
+                <tr className="border-b border-border text-textSecondary text-xs uppercase tracking-wider bg-background/35">
                   <th className="px-6 py-4 font-semibold">Name</th>
                   <th className="px-6 py-4 font-semibold">Email</th>
                   <th className="px-6 py-4 font-semibold">Phone</th>
@@ -237,24 +237,24 @@ const Customers: React.FC = () => {
                   <th className="px-6 py-4 font-semibold">Last Purchase</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-borderbg/50">
+              <tbody className="divide-y divide-border/50">
                 {customers.length > 0 ? (
                   customers.map((customer) => (
-                    <tr key={customer._id} className="hover:bg-borderbg/20 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-textprimary">{customer.name}</td>
-                      <td className="px-6 py-4 text-textsecondary">{customer.email}</td>
-                      <td className="px-6 py-4 text-textsecondary">{customer.phone || '—'}</td>
-                      <td className="px-6 py-4 text-textprimary">{customer.city || '—'}</td>
-                      <td className="px-6 py-4 text-textsecondary">{customer.gender || '—'}</td>
+                    <tr key={customer._id} className="hover:bg-border/20 transition-colors">
+                      <td className="px-6 py-4 font-semibold text-textPrimary">{customer.name}</td>
+                      <td className="px-6 py-4 text-textSecondary">{customer.email}</td>
+                      <td className="px-6 py-4 text-textSecondary">{customer.phone || '—'}</td>
+                      <td className="px-6 py-4 text-textPrimary">{customer.city || '—'}</td>
+                      <td className="px-6 py-4 text-textSecondary">{customer.gender || '—'}</td>
                       <td className="px-6 py-4 text-right font-bold text-success">
                         {formatCurrency(customer.lifetimeValue)}
                       </td>
-                      <td className="px-6 py-4 text-textsecondary">{formatDate(customer.lastPurchaseDate)}</td>
+                      <td className="px-6 py-4 text-textSecondary">{formatDate(customer.lastPurchaseDate)}</td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center text-textsecondary italic">
+                    <td colSpan={7} className="px-6 py-12 text-center text-textSecondary italic">
                       No customer records found matching your query.
                     </td>
                   </tr>
@@ -265,23 +265,23 @@ const Customers: React.FC = () => {
 
           {/* Table Pagination bar */}
           {totalPages > 1 && (
-            <div className="px-6 py-4 border-t border-borderbg flex items-center justify-between">
-              <span className="text-xs text-textsecondary">
-                Page <strong className="text-textprimary">{page}</strong> of <strong className="text-textprimary">{totalPages}</strong>
+            <div className="px-6 py-4 border-t border-border flex items-center justify-between">
+              <span className="text-xs text-textSecondary">
+                Page <strong className="text-textPrimary">{page}</strong> of <strong className="text-textPrimary">{totalPages}</strong>
               </span>
 
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="p-1.5 border border-borderbg rounded bg-darkbg hover:bg-borderbg text-textsecondary disabled:opacity-40 transition"
+                  className="p-1.5 border border-border rounded bg-background hover:bg-border text-textSecondary disabled:opacity-40 transition"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
-                  className="p-1.5 border border-borderbg rounded bg-darkbg hover:bg-borderbg text-textsecondary disabled:opacity-40 transition"
+                  className="p-1.5 border border-border rounded bg-background hover:bg-border text-textSecondary disabled:opacity-40 transition"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -294,13 +294,13 @@ const Customers: React.FC = () => {
       {/* Add Customer Modal popup */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-cardbg border border-borderbg rounded-xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+          <div className="bg-surface border border-border rounded-xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-borderbg flex items-center justify-between">
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
               <h3 className="text-lg font-bold">New Shopper Profile</h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-textsecondary hover:text-textprimary transition"
+                className="text-textSecondary hover:text-textPrimary transition"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -316,48 +316,48 @@ const Customers: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">Full Name</label>
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">Full Name</label>
                   <input
                     type="text"
                     required
                     placeholder="Enter shopper name"
                     value={newCustomer.name}
                     onChange={(e) => setNewCustomer({ ...newCustomer, name: e.target.value })}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">Email Address</label>
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">Email Address</label>
                   <input
                     type="email"
                     required
                     placeholder="name@domain.com"
                     value={newCustomer.email}
                     onChange={(e) => setNewCustomer({ ...newCustomer, email: e.target.value })}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">Phone Number</label>
+                <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">Phone Number</label>
                 <input
                   type="text"
                   placeholder="10-digit mobile number"
                   value={newCustomer.phone}
                   onChange={(e) => setNewCustomer({ ...newCustomer, phone: e.target.value })}
-                  className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">City</label>
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">City</label>
                   <select
                     value={newCustomer.city}
                     onChange={(e) => setNewCustomer({ ...newCustomer, city: e.target.value })}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   >
                     <option value="Delhi">Delhi</option>
                     <option value="Mumbai">Mumbai</option>
@@ -368,11 +368,11 @@ const Customers: React.FC = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">Gender</label>
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">Gender</label>
                   <select
                     value={newCustomer.gender}
                     onChange={(e) => setNewCustomer({ ...newCustomer, gender: e.target.value })}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -381,18 +381,18 @@ const Customers: React.FC = () => {
               </div>
 
               {/* Submit Buttons */}
-              <div className="pt-4 border-t border-borderbg flex items-center justify-end space-x-3">
+              <div className="pt-4 border-t border-border flex items-center justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 border border-borderbg bg-transparent hover:bg-borderbg text-textsecondary hover:text-textprimary rounded-lg text-sm transition"
+                  className="px-4 py-2 border border-border bg-transparent hover:bg-border text-textSecondary hover:text-textPrimary rounded-lg text-sm transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-lg text-sm font-semibold transition disabled:opacity-50"
+                  className="px-4 py-2 bg-primary text-[#111418] hover:bg-primary/90 rounded-lg text-sm font-semibold transition disabled:opacity-50"
                 >
                   {submitting ? 'Creating...' : 'Create Profile'}
                 </button>

@@ -177,14 +177,14 @@ const Orders: React.FC = () => {
             <ShoppingBag className="w-8 h-8 text-primary" />
             <span>Orders Log</span>
           </h2>
-          <p className="text-textsecondary text-sm">
-            Total transactions processed: <strong className="text-textprimary">{totalCount}</strong>
+          <p className="text-textSecondary text-sm">
+            Total transactions processed: <strong className="text-textPrimary">{totalCount}</strong>
           </p>
         </div>
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-primary text-white hover:bg-primary/95 rounded-lg transition text-sm font-semibold shadow-lg shadow-primary/20"
+          className="flex items-center space-x-2 px-4 py-2 bg-primary text-[#111418] hover:bg-primary/95 rounded-lg transition text-sm font-semibold shadow-lg shadow-primary/20"
         >
           <Plus className="w-4 h-4" />
           <span>New Order</span>
@@ -199,18 +199,18 @@ const Orders: React.FC = () => {
           <p className="text-danger font-semibold">{error}</p>
           <button
             onClick={fetchOrders}
-            className="flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/80 transition"
+            className="flex items-center space-x-2 px-4 py-2 bg-primary text-[#111418] rounded-lg hover:bg-primary/80 transition"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Retry</span>
           </button>
         </div>
       ) : (
-        <div className="bg-cardbg border border-borderbg rounded-xl overflow-hidden">
+        <div className="bg-surface border border-border rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-borderbg text-textsecondary text-xs uppercase tracking-wider bg-darkbg/35">
+                <tr className="border-b border-border text-textSecondary text-xs uppercase tracking-wider bg-background/35">
                   <th className="px-6 py-4 font-semibold">Order ID</th>
                   <th className="px-6 py-4 font-semibold">Customer Name</th>
                   <th className="px-6 py-4 font-semibold">Customer Email</th>
@@ -220,25 +220,25 @@ const Orders: React.FC = () => {
                   <th className="px-6 py-4 font-semibold">Order Date</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-borderbg/50">
+              <tbody className="divide-y divide-border/50">
                 {orders.length > 0 ? (
                   orders.map((order) => (
-                    <tr key={order._id} className="hover:bg-borderbg/20 transition-colors">
-                      <td className="px-6 py-4 font-mono text-textsecondary text-xs">
+                    <tr key={order._id} className="hover:bg-border/20 transition-colors">
+                      <td className="px-6 py-4 font-mono text-textSecondary text-xs">
                         {order._id.substring(0, 8).toUpperCase()}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-textprimary">
+                      <td className="px-6 py-4 font-semibold text-textPrimary">
                         {order.customerId?.name || 'Deleted Customer'}
                       </td>
-                      <td className="px-6 py-4 text-textsecondary">
+                      <td className="px-6 py-4 text-textSecondary">
                         {order.customerId?.email || '—'}
                       </td>
-                      <td className="px-6 py-4 text-textprimary">
-                        <span className="px-2 py-0.5 bg-borderbg border border-borderbg rounded text-xs">
+                      <td className="px-6 py-4 text-textPrimary">
+                        <span className="px-2 py-0.5 bg-border border border-border rounded text-xs">
                           {order.category}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-right font-bold text-textprimary">
+                      <td className="px-6 py-4 text-right font-bold text-textPrimary">
                         {formatCurrency(order.amount)}
                       </td>
                       <td className="px-6 py-4">
@@ -254,12 +254,12 @@ const Orders: React.FC = () => {
                           {order.status}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-textsecondary">{formatDate(order.orderDate)}</td>
+                      <td className="px-6 py-4 text-textSecondary">{formatDate(order.orderDate)}</td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center text-textsecondary italic">
+                    <td colSpan={7} className="px-6 py-12 text-center text-textSecondary italic">
                       No order transactions found. Seeding is recommended.
                     </td>
                   </tr>
@@ -270,23 +270,23 @@ const Orders: React.FC = () => {
 
           {/* Table Pagination */}
           {totalPages > 1 && (
-            <div className="px-6 py-4 border-t border-borderbg flex items-center justify-between">
-              <span className="text-xs text-textsecondary">
-                Page <strong className="text-textprimary">{page}</strong> of <strong className="text-textprimary">{totalPages}</strong>
+            <div className="px-6 py-4 border-t border-border flex items-center justify-between">
+              <span className="text-xs text-textSecondary">
+                Page <strong className="text-textPrimary">{page}</strong> of <strong className="text-textPrimary">{totalPages}</strong>
               </span>
 
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="p-1.5 border border-borderbg rounded bg-darkbg hover:bg-borderbg text-textsecondary disabled:opacity-40 transition"
+                  className="p-1.5 border border-border rounded bg-background hover:bg-border text-textSecondary disabled:opacity-40 transition"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
-                  className="p-1.5 border border-borderbg rounded bg-darkbg hover:bg-borderbg text-textsecondary disabled:opacity-40 transition"
+                  className="p-1.5 border border-border rounded bg-background hover:bg-border text-textSecondary disabled:opacity-40 transition"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -299,13 +299,13 @@ const Orders: React.FC = () => {
       {/* Add Transaction Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-cardbg border border-borderbg rounded-xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+          <div className="bg-surface border border-border rounded-xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-borderbg flex items-center justify-between">
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
               <h3 className="text-lg font-bold">Log New Transaction</h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-textsecondary hover:text-textprimary transition"
+                className="text-textSecondary hover:text-textPrimary transition"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -321,38 +321,38 @@ const Orders: React.FC = () => {
 
               {/* Customer Selector Search Dropdown */}
               <div className="space-y-1.5 relative">
-                <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                   Find Customer
                 </label>
                 
                 {selectedCustomer ? (
-                  <div className="flex items-center justify-between bg-darkbg border border-success/50 rounded-lg px-3 py-2 text-sm text-textprimary">
+                  <div className="flex items-center justify-between bg-background border border-success/50 rounded-lg px-3 py-2 text-sm text-textPrimary">
                     <div className="flex flex-col">
                       <span className="font-semibold text-success">{selectedCustomer.name}</span>
-                      <span className="text-xs text-textsecondary">{selectedCustomer.email}</span>
+                      <span className="text-xs text-textSecondary">{selectedCustomer.email}</span>
                     </div>
                     <button
                       type="button"
                       onClick={() => setSelectedCustomer(null)}
-                      className="text-textsecondary hover:text-danger transition"
+                      className="text-textSecondary hover:text-danger transition"
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </div>
                 ) : (
                   <div className="relative">
-                    <Search className="w-4 h-4 text-textsecondary absolute left-3 top-1/2 -translate-y-1/2" />
+                    <Search className="w-4 h-4 text-textSecondary absolute left-3 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       placeholder="Type name or email to search..."
                       value={customerSearchQuery}
                       onChange={(e) => setCustomerSearchQuery(e.target.value)}
-                      className="w-full bg-darkbg border border-borderbg rounded-lg pl-9 pr-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                      className="w-full bg-background border border-border rounded-lg pl-9 pr-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                     />
 
                     {/* Autocomplete Dropdown */}
                     {matchingCustomers.length > 0 && (
-                      <ul className="absolute z-10 w-full mt-1 bg-cardbg border border-borderbg rounded-lg overflow-hidden shadow-xl divide-y divide-borderbg">
+                      <ul className="absolute z-10 w-full mt-1 bg-surface border border-border rounded-lg overflow-hidden shadow-xl divide-y divide-border">
                         {matchingCustomers.map((cust) => (
                           <li
                             key={cust._id}
@@ -361,11 +361,11 @@ const Orders: React.FC = () => {
                               setMatchingCustomers([]);
                               setCustomerSearchQuery('');
                             }}
-                            className="px-4 py-2 hover:bg-primary/15 hover:text-white cursor-pointer transition text-xs flex justify-between items-center"
+                            className="px-4 py-2 hover:bg-primary/15 hover:text-[#111418] cursor-pointer transition text-xs flex justify-between items-center"
                           >
                             <div>
                               <span className="font-semibold block">{cust.name}</span>
-                              <span className="text-[10px] text-textsecondary block">{cust.email}</span>
+                              <span className="text-[10px] text-textSecondary block">{cust.email}</span>
                             </div>
                             <Check className="w-3.5 h-3.5 opacity-0 hover:opacity-100 text-success" />
                           </li>
@@ -374,7 +374,7 @@ const Orders: React.FC = () => {
                     )}
 
                     {searchingCustomer && (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-textsecondary flex items-center space-x-1">
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-textSecondary flex items-center space-x-1">
                         <RefreshCw className="w-3 h-3 animate-spin text-primary" />
                         <span>Searching...</span>
                       </div>
@@ -386,7 +386,7 @@ const Orders: React.FC = () => {
               {/* Order Amount */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                     Amount (₹)
                   </label>
                   <input
@@ -395,18 +395,18 @@ const Orders: React.FC = () => {
                     placeholder="Enter spend amount"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                  <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                     Category
                   </label>
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                    className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                   >
                     <option value="Shoes">Shoes</option>
                     <option value="T-Shirts">T-Shirts</option>
@@ -419,7 +419,7 @@ const Orders: React.FC = () => {
 
               {/* Order Date */}
               <div className="space-y-1.5">
-                <label className="text-xs text-textsecondary font-semibold uppercase tracking-wider block">
+                <label className="text-xs text-textSecondary font-semibold uppercase tracking-wider block">
                   Transaction Date
                 </label>
                 <input
@@ -427,23 +427,23 @@ const Orders: React.FC = () => {
                   required
                   value={orderDate}
                   onChange={(e) => setOrderDate(e.target.value)}
-                  className="w-full bg-darkbg border border-borderbg rounded-lg px-3 py-2 text-sm text-textprimary focus:outline-none focus:border-primary"
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary"
                 />
               </div>
 
               {/* Modal Buttons */}
-              <div className="pt-4 border-t border-borderbg flex items-center justify-end space-x-3">
+              <div className="pt-4 border-t border-border flex items-center justify-end space-x-3">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 border border-borderbg bg-transparent hover:bg-borderbg text-textsecondary hover:text-textprimary rounded-lg text-sm transition"
+                  className="px-4 py-2 border border-border bg-transparent hover:bg-border text-textSecondary hover:text-textPrimary rounded-lg text-sm transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-lg text-sm font-semibold transition disabled:opacity-50"
+                  className="px-4 py-2 bg-primary text-[#111418] hover:bg-primary/90 rounded-lg text-sm font-semibold transition disabled:opacity-50"
                 >
                   {submitting ? 'Saving...' : 'Log Transaction'}
                 </button>

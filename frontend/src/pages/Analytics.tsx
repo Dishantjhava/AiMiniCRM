@@ -209,7 +209,7 @@ const Analytics: React.FC = () => {
             <BarChart3 className="w-8 h-8 text-primary" />
             <span>Campaign Metrics & Insights</span>
           </h2>
-          <p className="text-textsecondary text-sm">
+          <p className="text-textSecondary text-sm">
             AI-driven campaign funnel evaluations and recommendations.
           </p>
         </div>
@@ -217,11 +217,11 @@ const Analytics: React.FC = () => {
         {/* Dropdown Selector */}
         {campaignsList.length > 0 && (
           <div className="flex items-center space-x-2">
-            <span className="text-xs text-textsecondary font-semibold uppercase tracking-wider">Select Campaign:</span>
+            <span className="text-xs text-textSecondary font-semibold uppercase tracking-wider">Select Campaign:</span>
             <select
               value={selectedCampaignId || ''}
               onChange={handleDropdownChange}
-              className="bg-cardbg border border-borderbg rounded-lg px-4 py-2 text-sm text-textprimary focus:outline-none focus:border-primary transition"
+              className="bg-surface border border-border rounded-lg px-4 py-2 text-sm text-textPrimary focus:outline-none focus:border-primary transition"
             >
               {campaignsList.map((item) => (
                 <option key={item._id} value={item._id}>
@@ -251,18 +251,18 @@ const Analytics: React.FC = () => {
         <div className="space-y-8 animate-in fade-in duration-300">
           
           {/* Campaign details summary header */}
-          <div className="bg-cardbg border border-borderbg rounded-xl p-6 relative overflow-hidden">
+          <div className="bg-surface border border-border rounded-xl p-6 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-            <h3 className="text-xl font-bold text-textprimary">{analytics.campaign.name}</h3>
-            <p className="text-xs text-textsecondary mt-1">Goal: {analytics.campaign.goal || 'General engagement'}</p>
-            <div className="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-textsecondary">
-              <span className="px-2.5 py-1 bg-borderbg rounded border border-borderbg text-textprimary">
+            <h3 className="text-xl font-bold text-textPrimary">{analytics.campaign.name}</h3>
+            <p className="text-xs text-textSecondary mt-1">Goal: {analytics.campaign.goal || 'General engagement'}</p>
+            <div className="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-textSecondary">
+              <span className="px-2.5 py-1 bg-border rounded border border-border text-textPrimary">
                 Channel: {analytics.campaign.recommendedChannel}
               </span>
-              <span className="px-2.5 py-1 bg-borderbg rounded border border-borderbg text-textprimary">
+              <span className="px-2.5 py-1 bg-border rounded border border-border text-textPrimary">
                 Target Audience Size: {analytics.campaign.audienceSize} customers
               </span>
-              <span className="px-2.5 py-1 bg-borderbg rounded border border-borderbg text-textprimary">
+              <span className="px-2.5 py-1 bg-border rounded border border-border text-textPrimary">
                 Dispatched Date: {new Date(analytics.campaign.createdAt).toLocaleDateString('en-IN')}
               </span>
             </div>
@@ -282,10 +282,10 @@ const Analytics: React.FC = () => {
           {/* Rates conversion metrics */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {metricsData.map((item, idx) => (
-              <div key={idx} className="bg-cardbg border border-borderbg/50 rounded-xl p-5 text-center">
-                <span className="text-xs text-textsecondary uppercase tracking-wider font-semibold block">{item.label}</span>
+              <div key={idx} className="bg-surface border border-border/50 rounded-xl p-5 text-center">
+                <span className="text-xs text-textSecondary uppercase tracking-wider font-semibold block">{item.label}</span>
                 <strong className="text-3xl text-success font-extrabold block mt-2">{item.value}</strong>
-                <span className="text-[10px] text-textsecondary block mt-1">{item.desc}</span>
+                <span className="text-[10px] text-textSecondary block mt-1">{item.desc}</span>
               </div>
             ))}
           </div>
@@ -294,8 +294,8 @@ const Analytics: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             
             {/* Conversion chart */}
-            <div className="lg:col-span-3 bg-cardbg border border-borderbg rounded-xl p-6">
-              <h4 className="text-sm font-bold text-textsecondary uppercase tracking-wider mb-6">
+            <div className="lg:col-span-3 bg-surface border border-border rounded-xl p-6">
+              <h4 className="text-sm font-bold text-textSecondary uppercase tracking-wider mb-6">
                 Cohort Funnel Performance
               </h4>
               <div className="h-80 w-full">
@@ -327,35 +327,35 @@ const Analytics: React.FC = () => {
             <div className="lg:col-span-2 gradient-border-purple p-6 space-y-6">
               <div className="flex items-center space-x-2">
                 <Sparkles className="w-5 h-5 text-primary animate-pulse" />
-                <h4 className="text-md font-bold bg-gradient-to-r from-primary to-success bg-clip-text text-transparent">
+                <h4 className="text-md font-bold bg-gradient-to-r from-primary to-[#2A8A67] bg-clip-text text-transparent">
                   AI-Generated Insights
                 </h4>
               </div>
 
               {/* Summary paragraph */}
               <div className="space-y-4">
-                <p className="text-sm text-textprimary leading-relaxed bg-darkbg/40 p-3.5 border border-borderbg/40 rounded-lg">
+                <p className="text-sm text-textPrimary leading-relaxed bg-background/40 p-3.5 border border-border/40 rounded-lg">
                   {analytics.aiInsights.summary}
                 </p>
 
                 {/* Bullet insights */}
                 <div className="space-y-3">
-                  <span className="text-xs font-semibold text-textsecondary uppercase tracking-wider block">Key Findings</span>
+                  <span className="text-xs font-semibold text-textSecondary uppercase tracking-wider block">Key Findings</span>
                   {analytics.aiInsights.insights.map((insight, i) => (
                     <div key={i} className="flex items-start space-x-2 text-xs">
                       <Flame className="w-4 h-4 text-warning shrink-0 mt-0.5" />
-                      <span className="text-textsecondary">{insight}</span>
+                      <span className="text-textSecondary">{insight}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Recommendations */}
                 <div className="space-y-3 pt-2">
-                  <span className="text-xs font-semibold text-textsecondary uppercase tracking-wider block">Action Items</span>
+                  <span className="text-xs font-semibold text-textSecondary uppercase tracking-wider block">Action Items</span>
                   {analytics.aiInsights.recommendations.map((rec, i) => (
                     <div key={i} className="flex items-start space-x-2 text-xs">
                       <AlertTriangle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                      <span className="text-textprimary font-medium">{rec}</span>
+                      <span className="text-textPrimary font-medium">{rec}</span>
                     </div>
                   ))}
                 </div>
@@ -366,7 +366,7 @@ const Analytics: React.FC = () => {
 
         </div>
       ) : (
-        <div className="bg-cardbg border border-borderbg rounded-xl p-12 text-center text-xs text-textsecondary italic">
+        <div className="bg-surface border border-border rounded-xl p-12 text-center text-xs text-textSecondary italic">
           {campaignsList.length === 0 ? "No campaigns yet" : "No metrics available. Please select or deploy a sent campaign first."}
         </div>
       )}
