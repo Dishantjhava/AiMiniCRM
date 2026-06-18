@@ -6,9 +6,9 @@ Traditional Customer Relationship Management (CRM) tools for retail brands are o
 Furthermore, building shopper cohorts in modern databases requires marketing executives to write structured SQL or MongoDB queries or depend on technical teams to extract target lists. This delay hampers the speed of marketing execution. The Xeno Mini CRM addresses these friction points by combining an AI-assisted natural language parser for database segment querying with a dedicated event callback architecture to simulate and monitor message status conversion flows.
 
 ## Live Demo
-- Frontend: `http://localhost:5173`
-- CRM Service: `http://localhost:5000`
-- Channel Service: `http://localhost:6001`
+- Frontend: `https://xeno-frontend-ye5o.onrender.com/dashboard`
+- CRM Service: `https://aiminicrm.onrender.com/api/customers` or `https://aiminicrm.onrender.com/api/seed`
+- Channel Service: `https://xeno-channel-service-3cay.onrender.com/`
 
 ## Architecture Diagram
 
